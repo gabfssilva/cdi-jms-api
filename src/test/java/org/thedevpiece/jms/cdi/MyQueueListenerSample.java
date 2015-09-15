@@ -1,8 +1,14 @@
-# cdi-jms-api
+package org.thedevpiece.jms.cdi;
 
-This api helps you register listeners and send message using JMS, running on top of CDI.
+import javax.enterprise.context.ApplicationScoped;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageListener;
+import javax.jms.TextMessage;
 
-```java
+/**
+ * @author Gabriel Francisco - gabfssilva@gmail.com
+ */
 @ApplicationScoped
 @JmsListener(destination = "MyQueue")
 public class MyQueueListenerSample implements MessageListener {
@@ -16,13 +22,3 @@ public class MyQueueListenerSample implements MessageListener {
         }
     }
 }
-```
-
-```java
- @Inject
-private JmsTemplate jmsTemplate;
-
-public void sendMessage() {
-    jmsTemplate.send("MyQueue", "message test");
-}
-```
